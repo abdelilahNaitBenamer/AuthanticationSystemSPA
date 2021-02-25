@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch localhost in Microsoft Edge (Chromium) Canary",
+      "type": "edge",
+      "request": "launch",
+      "version": "canary",
+      "url": "http://localhost:4200/",
+      "webRoot": "${workspaceFolder}"
+    },
+      {
+          "name": "Launch index.html in Microsoft Edge",
+          "type": "edge",
+          "request": "launch",
+          "file": "${workspaceFolder}"
+      },
+  ]
+}

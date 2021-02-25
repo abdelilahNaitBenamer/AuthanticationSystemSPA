@@ -1,0 +1,37 @@
+<div class="jumbotron">
+  <h1 class="display-3">Hello, {{user.fullName}}!</h1>
+  <hr class="my-4">
+  <p class="lead"><b>User name</b>: {{user.userName}}</p>
+  <p class="lead"><b>Email</b>: {{user.email}}</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#myModal">Edit my informations</a>
+  </p>
+</div>
+<div class="modal" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit User : {{user.userName}}</h5>
+        <button type="button" id="closeModalButton" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()" >
+          <fieldset>
+            <div class="form-group"
+            [ngClass]="{'has-danger':fullname?.invalid, 'has-success':fullname?.touched && fullname?.valid}">
+              <label  class="form-control-label" for="fullname">Full Name</label>
+              <input type="fullname"  formControlName="fullname" class="form-control" id="fullname"  value="{{user.fullName}}"
+              [ngClass]="{'is-invalid':fullname?.invalid, 'is-valid':fullname?.valid}">
+              <div *ngIf="fullname?.errors?.required" class="invalid-feedback">Fullname is required</div>
+              <div *ngIf="fullname?.errors?.minlength" class="invalid-feedback">Fullname must containes more than  {{fullname?.errors?.minlength?.requiredLength}}</div>
+              <div *ngIf="fullname?.touched && fullname?.valid" class="valid-feedback">Success! fullname is valid.</div>
+            </div>
+          </fieldset>
+          <button class="btn btn-block btn-dark" [disabled]="editUserForm.invalid">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

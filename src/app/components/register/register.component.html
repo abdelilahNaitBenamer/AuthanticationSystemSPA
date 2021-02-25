@@ -1,0 +1,54 @@
+<div class="offset-md-3 col-md-6  mt-5">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
+  <fieldset>
+    <legend>Register</legend>
+    <div class="form-group"
+        [ngClass]="{'has-danger':email?.touched && email?.invalid, 'has-success':email?.touched && email?.valid}">
+      <label  class="form-control-label" for="email">Email address</label>
+      <input type="email" formControlName="email" class="form-control" [ngClass]="{'is-invalid':email?.touched && email?.invalid, 'is-valid':email?.touched && email?.valid}" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <div *ngIf="email?.errors?.required" class="invalid-feedback">Email is required</div>
+      <div *ngIf="email?.errors?.email" class="invalid-feedback">Email format is not respected</div>
+      <div *ngIf="email?.touched && email?.valid"class="valid-feedback">Success! email is valid.</div>
+    </div>
+    <div class="form-group"
+      [ngClass]="{'has-danger':username?.touched && username?.invalid, 'has-success':username?.touched && username?.valid}">
+      <label for="username">User Name</label>
+      <input type="username" formControlName="username" class="form-control" id="username" placeholder="Enter your username"
+        [ngClass]="{'is-invalid':username?.touched && username?.invalid, 'is-valid':username?.touched && username?.valid}">
+      <div *ngIf="username?.errors?.required" class="invalid-feedback">Username is required</div>
+      <div *ngIf="username?.errors?.minlength" class="invalid-feedback">Username must containes more than  {{username?.errors?.minlength?.requiredLength}}</div>
+      <div *ngIf="username?.errors?.maxlength" class="invalid-feedback">Username must containes few than {{username?.errors?.maxlength?.requiredLength}}</div>
+      <div *ngIf="username?.touched && username?.valid" class="valid-feedback">Success! username is valid.</div>
+    </div>
+    <div class="form-group"
+    [ngClass]="{'has-danger':fullname?.touched && fullname?.invalid, 'has-success':fullname?.touched && fullname?.valid}">
+      <label  class="form-control-label" for="fullname">Full Name</label>
+      <input type="fullname"  formControlName="fullname" class="form-control" id="fullname" placeholder="Enter your full name"
+      [ngClass]="{'is-invalid':fullname?.touched && fullname?.invalid, 'is-valid':fullname?.touched && fullname?.valid}">
+      <div *ngIf="fullname?.errors?.required" class="invalid-feedback">Fullname is required</div>
+      <div *ngIf="fullname?.errors?.minlength" class="invalid-feedback">Fullname must containes more than  {{fullname?.errors?.minlength?.requiredLength}}</div>
+      <div *ngIf="fullname?.touched && fullname?.valid" class="valid-feedback">Success! fullname is valid.</div>
+    </div>
+    <div class="form-group"
+    [ngClass]="{'has-danger':password?.touched && password?.invalid, 'has-success':password?.touched && password?.valid}">
+      <label  class="form-control-label" for="password">Password</label>
+      <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+      [ngClass]="{'is-invalid':password?.touched && password?.invalid, 'is-valid':password?.touched && password?.valid}">
+      <div *ngIf="password?.errors?.required" class="invalid-feedback">The password is required</div>
+      <div *ngIf="password?.errors?.minlength" class="invalid-feedback">The password must containes more than  {{password?.errors?.minlength?.requiredLength}}</div>
+      <div *ngIf="password?.touched && password?.valid" class="valid-feedback">Success! password is valid.</div>
+    </div>
+    <div class="form-group"
+    [ngClass]="{'has-danger':confirmPassword?.touched && confirmPassword?.invalid, 'has-success':confirmPassword?.touched && confirmPassword?.valid}">
+      <label  class="form-control-label" for="confirmPassword">Confirm Your Password</label>
+      <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPassword" placeholder="Confirm Password"
+      [ngClass]="{'is-invalid':confirmPassword?.touched && confirmPassword?.invalid, 'is-valid':confirmPassword?.touched && confirmPassword?.valid}">
+      <div *ngIf="confirmPassword?.errors?.required" class="invalid-feedback">Please confirm your password</div>
+      <div *ngIf="confirmPassword?.errors?.matchPassword" class="invalid-feedback">Passwords must match</div>
+      <div *ngIf="confirmPassword?.touched && confirmPassword?.valid" class="valid-feedback">Success! passwords match.</div>
+    </div>
+    <button [disabled]="registerForm.invalid" class="btn btn-block btn-primary">Register</button>
+  </fieldset>
+</form>
+</div>
